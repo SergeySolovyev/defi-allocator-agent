@@ -57,13 +57,14 @@ region-blocked free Gemini API), and degrade gracefully to the deterministic rat
 
 ## 5. Live demo
 
-The deployed service fetches **live** supply APYs, runs T1, and shows the proposal with
-**Approve / Reject** buttons. In the screenshot it proposes `aave_v3 → euler_v2`
-(spread 5223 bp, `E[gain] $199 > cost $1`) and waits for a human.
+The deployed service fetches **live** supply APYs (DefiLlama — the canonical max-TVL
+pool per venue, base supply rate **net of reward incentives**), runs T1, and shows the
+proposal with **Approve / Reject** buttons. At the time of writing it proposes
+`aave_v3 → morpho_blue` (spread ~226 bp, `E[gain] $8.6 > cost $0.7`) and waits for a human.
 
-> The live Euler rate was an incentive-juiced 54% — which is exactly *why* the
-> human-in-the-loop + `contract-audit` gate exist: a too-good rate must be scrutinised,
-> not blindly executed. The demo demonstrates its own safety rationale.
+> The agent never executes. A proposed switch still passes a human and the
+> `contract-audit` skill before any funds move — a higher headline rate is a reason to
+> *scrutinise* the target venue's contract risk, not a reason to trust it blindly.
 
 *(Screenshot in the GitHub README / the video.)*
 

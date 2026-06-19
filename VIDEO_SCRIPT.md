@@ -13,12 +13,13 @@ moves your funds." → show the live page.
 
 **0:30–1:30 — Live demo (the agent).**
 Open `https://defi-allocator-1038590668771.europe-west1.run.app`.
-"It fetches live supply APYs across Aave, Compound, Spark, Morpho, Euler, Fluid,
-runs my decision rule, and *proposes* a switch — here aave_v3 → euler_v2, expected
-gain $199 versus a $1 cost. It does NOT execute: a human Approves or Rejects."
-Point to the Euler 54% line: "That rate is incentive-juiced — which is exactly why
-the human-in-the-loop and the contract-audit skill exist. Too-good rates get
-scrutinised, not blindly executed." Click **Reject** to show it logs intent only.
+"It fetches live supply APYs across Aave, Compound, Spark, Morpho, Euler, Fluid — the
+canonical pool per venue, base rate net of incentives — runs my decision rule, and
+*proposes* a switch, here aave_v3 → morpho_blue, where the expected gain over the
+expected dwell beats the gas cost. It does NOT execute: a human Approves or Rejects."
+"And before any funds move it runs a contract-audit skill on the target venue — a
+higher rate is a reason to scrutinise contract risk, not to trust it blindly."
+Click **Reject** to show it logs intent only.
 
 **1:30–2:15 — The rule (why no black box).**
 Open `defi_allocator/decision.py`. "The decision is a deterministic 50-line rule from

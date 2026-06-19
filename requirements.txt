@@ -1,0 +1,15 @@
+# Core (replay, eval, agent) — runs offline on the committed sample slice
+pandas>=2.0
+pyarrow>=14.0
+requests>=2.31
+
+# Web UI for Cloud Run (human-in-the-loop approval)
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# Optional: Vertex AI natural-language explanations (the billed Vertex path,
+# NOT the region-blocked free Gemini API). Core works without it.
+google-cloud-aiplatform>=1.60
+
+# Dev
+pytest>=8.0

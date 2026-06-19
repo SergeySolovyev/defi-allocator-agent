@@ -1,0 +1,12 @@
+# What NOT to upload to Cloud Build (the image only needs defi_allocator/, app/, data/).
+.git/
+.gitignore
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+tests/
+scripts/
+README.md
+LICENSE
+skills/

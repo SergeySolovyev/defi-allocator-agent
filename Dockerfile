@@ -7,7 +7,7 @@ FROM python:3.12-slim
 WORKDIR /app
 RUN pip install --no-cache-dir \
     "pandas>=2.0" "pyarrow>=14.0" "requests>=2.31" \
-    "fastapi>=0.110" "uvicorn[standard]>=0.29"
+    "fastapi>=0.110" "uvicorn[standard]>=0.29" "python-multipart>=0.0.9"
 
 COPY defi_allocator/ ./defi_allocator/
 COPY app/ ./app/

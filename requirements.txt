@@ -6,6 +6,7 @@ requests>=2.31
 # Web UI for Cloud Run (human-in-the-loop approval)
 fastapi>=0.110
 uvicorn[standard]>=0.29
+python-multipart>=0.0.9   # required by the /decide Form() endpoint
 
 # Optional: Vertex AI natural-language explanations (the billed Vertex path,
 # NOT the region-blocked free Gemini API). Core works without it.

@@ -10,6 +10,10 @@ Capstone for the **Google × Kaggle "5-Day AI Agents: Intensive Vibe Coding"**
 course, built on the paper *"Event-Time MCDM Allocation across DeFi Lending
 Protocols"* (Sergei Solovev, WorldQuant University).
 
+**🔗 Live agent:** <https://defi-allocator-1038590668771.europe-west1.run.app>
+ · **Code:** <https://github.com/SergeySolovyev/defi-allocator-agent>
+ · **Reproduce headline:** `python scripts/run_replay_demo.py`
+
 ## Why this is different
 
 - **The decision is a deterministic ~50-line rule (T1), not a black box.** A
@@ -56,10 +60,36 @@ natural-language contract in [`skills/allocation-decision/SKILL.md`](skills/allo
 | Day 4 — Skills/Security | `contract-audit` pre-switch gate + STRIDE | `skills/contract-audit/SKILL.md` |
 | Day 4 — Human-in-the-loop | propose → human approves (never auto-executes) | `defi_allocator/agent.py` |
 | Day 4–5 — Eval / observability | replay + eval vs every passive hold + audit log | `defi_allocator/{replay,eval}.py` |
-| Day 1 — Deploy | Cloud Run web UI (approve/reject) | `app/main.py`, `app/Dockerfile` |
+| Day 1 — Deploy | Cloud Run web UI (approve/reject) | `app/main.py`, `Dockerfile` |
 
 Natural-language explanations use **Vertex AI** (the billed Vertex path — *not*
 the region-blocked free Gemini API); the core works without it.
+
+## Live demo (deployed)
+
+The agent runs live on Cloud Run — open
+**<https://defi-allocator-1038590668771.europe-west1.run.app>** to watch it fetch
+live supply APYs, apply T1, and propose a switch with **Approve / Reject** buttons
+(it logs intent only — it never moves funds). A recent snapshot:
+
+```text
+Position $1,000,000 in aave_v3  |  gas 1.0 gwei
+PROPOSE SWITCH: aave_v3 -> morpho_blue
+E[gain]=$8.5 > C=$0.70 (spread 223.7bp, dwell 1000b)
+[ Approve (log intent) ]   [ Reject ]
+
+Live supply APYs
+  morpho_blue   5.38 %
+  fluid         5.07 %
+  spark         3.63 %
+  compound_v3   3.18 %
+  aave_v3       3.14 %
+  euler_v2      2.74 %
+```
+
+Live rates are point-in-time and change every block; the figures above are
+illustrative. The demo video walks through a **Reject** to show the agent never
+auto-executes.
 
 ## Run it
 

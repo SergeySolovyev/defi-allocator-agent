@@ -59,14 +59,16 @@ region-blocked free Gemini API), and degrade gracefully to the deterministic rat
 
 The deployed service fetches **live** supply APYs (DefiLlama — the canonical max-TVL
 pool per venue, base supply rate **net of reward incentives**), runs T1, and shows the
-proposal with **Approve / Reject** buttons. At the time of writing it proposes
-`aave_v3 → morpho_blue` (spread ~226 bp, `E[gain] $8.6 > cost $0.7`) and waits for a human.
+proposal with **Approve / Reject** buttons. At the time of writing it proposed
+`aave_v3 → morpho_blue` (spread ~224 bp, `E[gain] $8.5 > cost $0.7`) — *illustrative,
+point-in-time; the live state changes block to block* — and waited for a human.
 
 > The agent never executes. A proposed switch still passes a human and the
 > `contract-audit` skill before any funds move — a higher headline rate is a reason to
 > *scrutinise* the target venue's contract risk, not a reason to trust it blindly.
 
-*(Screenshot in the GitHub README / the video.)*
+*(Open the live URL above for the current proposal + Approve/Reject UI; the demo
+video walks through a **Reject** to show it logs intent only and never moves funds.)*
 
 ## 6. Result (reproducible)
 

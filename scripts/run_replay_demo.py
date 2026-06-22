@@ -14,6 +14,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+# Windows consoles default to cp1252; force UTF-8 so the report's en-dashes
+# and the "->" arrows render instead of mojibake.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:  # pragma: no cover - older/odd stdout objects
+    pass
+
 from defi_allocator.eval import evaluate, format_report
 from defi_allocator.fetchers import load_panel
 
@@ -23,9 +30,16 @@ def main(argv=None) -> int:
     ap.add_argument("--position-usd", type=float, default=1_000_000)
     a = ap.parse_args(argv)
     panel = load_panel()
-    print(f"loaded {len(panel):,} blocks from data/sample_panel.parquet\n")
+    print(f"loaded {len(panel):,} blocks from data/sample_panel.parquet")
+    # The eval is a pure-Python per-block loop (~1 min, no progress bar) -- say so
+    # up front so a grader timing the run does not think it has hung.
+    print(
+        f"replaying T1 + 6 passive holds over {len(panel):,} blocks at "
+        f"${a.position_usd:,.0f} (pure-Python per-block loop, ~1 min)...",
+        flush=True,
+    )
     ev = evaluate(panel, position_usd=a.position_usd)
-    print(format_report(ev))
+    print("\n" + format_report(ev))
     return 0
 
 

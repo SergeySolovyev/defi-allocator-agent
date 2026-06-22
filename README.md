@@ -53,6 +53,8 @@ natural-language contract in [`skills/allocation-decision/SKILL.md`](skills/allo
 
 ## Architecture → course days
 
+![Architecture: live 6-protocol APY tools → T1 decision skill → contract-audit + human approval → proposal only; eval/replay below; deployed on Cloud Run](docs/architecture.png)
+
 | course day | piece | file |
 |---|---|---|
 | Day 2 — Tools | 6-protocol APY fetchers (live DefiLlama / cached panel) | `defi_allocator/fetchers.py` |
@@ -64,6 +66,16 @@ natural-language contract in [`skills/allocation-decision/SKILL.md`](skills/allo
 
 Natural-language explanations use **Vertex AI** (the billed Vertex path — *not*
 the region-blocked free Gemini API); the core works without it.
+
+## Course concepts demonstrated (the rubric asks for ≥ 3)
+
+| Key concept (Kaggle rubric) | How this project demonstrates it | Where |
+|---|---|---|
+| **Agent skills** (e.g. Agents CLI) | Two Agent Skills: `allocation-decision` (the T1 HOLD/SWITCH contract) and `contract-audit` (STRIDE pre-switch gate), authored as `SKILL.md` | `skills/` (Code) |
+| **Security features** | Non-custodial by construction (the agent holds no key that can move funds — it only proposes); `contract-audit` STRIDE gate before any switch; no API keys/secrets in the repo | `skills/contract-audit/`, `agent.py` (Code/Video) |
+| **Deployability** | Live on **Google Cloud Run** via `gcloud run deploy --source .`; reproducible root `Dockerfile` + documented steps | `Dockerfile`, this README (Video) |
+
+(The decision core is also a genuine **agent** — monitor → propose → human approve/reject — wrapped around a deterministic, auditable rule.)
 
 ## Live demo (deployed)
 

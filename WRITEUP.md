@@ -55,6 +55,15 @@ Equivalently: *switch only when the expected extra yield over the dwell beats th
 Natural-language explanations use **Vertex AI** (the billed Vertex path — *not* the
 region-blocked free Gemini API), and degrade gracefully to the deterministic rationale.
 
+**Track:** *Agents for Business* — an agent that puts idle treasury USDC to work, with
+real cost/revenue on the line. **Course concepts demonstrated (rubric asks ≥ 3):**
+
+| Key concept | How | Where |
+|---|---|---|
+| **Agent skills** (Agents CLI) | `allocation-decision` + `contract-audit` Skills (`SKILL.md`) | Code |
+| **Security features** | non-custodial (no fund-moving key), STRIDE `contract-audit` gate, no secrets in repo | Code / Video |
+| **Deployability** | live on Cloud Run (`gcloud run deploy --source .`), reproducible `Dockerfile` | Video |
+
 ## 5. Live demo
 
 The deployed service fetches **live** supply APYs (DefiLlama — the canonical max-TVL
